@@ -1,6 +1,8 @@
 # pyColoredLogger
 Colored Logger library for python
 
+First install requirements with `pip install -r requirements.txt` then:
+
 get a logger with:
 
 ```
