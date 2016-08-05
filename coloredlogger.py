@@ -56,3 +56,4 @@ if __name__ == '__main__':
 	logger.add_config('my-log', {'prefix': "ROCK!",'color': ColoredLogger.COLORS.CYAN, 'header-only': True})
 	logger.custom('my-log', 'YOU!')
 	logger.custom('my-log', 'ALL!')
+	# AVAILABLE: BLACK, RED, GREEN, YELLOW, BLUE, MAGENTA, CYAN, WHITE, RESET
