@@ -48,15 +48,15 @@ log using pre-setup methods:
     logger.info('A blue info message')
     logger.log('Or just some verbose log')
 
+And you should see:
+
+.. image:: https://github.com/Fmakdemir/colored-logger/blob/master/assets/coloredlog-1.png?raw=true
+
 ..
     | 2016-11-05 21:35:55 :red:`[-] Omg red as rose error`
     | 2016-11-05 21:35:55 :green:`[+] Such success much green wow`
     | 2016-11-05 21:35:55 :blue:`[?] just a blue info`
     | 2016-11-05 21:35:55 [ ] some log here
-    | 2016-11-05 21:35:55 :teal:`ROCK!` YOU!
-    | 2016-11-05 21:35:55 :teal:`ROCK!` ALL!
-    | 2016-11-05 21:35:55 :teal:`ROCK!` test@with@at@symbols
-
 
 or make your own log method using a name prefix color level and whether only
 header will be colored or the whole line:
@@ -66,6 +66,15 @@ header will be colored or the whole line:
     logger.add_config('my-log', {'prefix': "ROCK!",'color': ColoredLogger.COLORS.CYAN, 'header-only': True})
     logger.custom('my-log', 'YOU!')
     logger.custom('my-log', 'ALL!')
+
+..
+    | 2016-11-05 21:35:55 :teal:`ROCK!` YOU!
+    | 2016-11-05 21:35:55 :teal:`ROCK!` ALL!
+    | 2016-11-05 21:35:55 :teal:`ROCK!` test@with@at@symbols
+
+And you should see:
+
+.. image:: https://github.com/Fmakdemir/colored-logger/blob/master/assets/coloredlog-2.png?raw=true
 
 Config object
 #############
