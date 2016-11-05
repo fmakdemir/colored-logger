@@ -6,9 +6,10 @@ import copy
 
 COLORS = Fore
 
-def getLogger(config={}):
+def getLogger(cfg_name=None, config=None):
 	logger = ColoredLogger()
-	logger.add_config('my-log', config)
+	if cfg_name != None and config != None:
+		logger.add_config(cfg_name, config)
 	return logger
 
 

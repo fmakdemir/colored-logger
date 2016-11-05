@@ -10,6 +10,12 @@ from coloredlogger import ColoredLogger
 logger = ColoredLogger()
 ```
 
+or get logger with optional config name and config
+
+```
+import coloredlogger
+logger = coloredlogger.getLogger(cfg_name=OPTIONAL_CONFIG_NAME, OPTIONAL_CONFIG)
+
 log using pre-setup methods:
 
 ```
@@ -27,4 +33,19 @@ logger.add_config('my-log', {'prefix': "ROCK!",'color': ColoredLogger.COLORS.CYA
 logger.custom('my-log', 'YOU!')
 logger.custom('my-log', 'ALL!')
 ```
+
+## Config object
+All keys are optional and if not given will be overridden by defaults
+```
+{
+	'level': 10, // integer
+	'timestamp': '%Y-%m-%d %H:%M:%S', // timestamp format used with strftime
+	'prefix': '[ ]', // prefix which can include {{TIME}} to put timestamp with
+	'color': coloredlogger.COLORS.WHITE, // one of coloredlogger.COLORS
+	'header-only': False // whether or not color whole line or just header
+}
+```
+
+### colors
+colors from clorama
 
