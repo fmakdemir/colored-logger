@@ -1,12 +1,29 @@
+.. role:: cmd(code)
+   :language: python
+
+.. role:: red
+
+.. role:: green
+
+.. role:: blue
+
+.. role:: teal
+
+.. raw:: html
+
+    <style> .red {color:red} </style>
+
+************************
 ColoredLogger for Python
-########################
+************************
 
 Colored Logger for Python that uses clorama for colorful output with timestamp and customizable format
 
 Setup
------
+#####
 
-First install requirements with `pip install -r requirements.txt` or use pip install coloredlogger
+Use :cmd:`pip install coloredlogger` to install using pip or
+use source code and install requirements with :cmd:`pip install -r requirements.txt`
 
 get a logger with:
 
@@ -31,6 +48,15 @@ log using pre-setup methods:
     logger.info('A blue info message')
     logger.log('Or just some verbose log')
 
+..
+    | 2016-11-05 21:35:55 :red:`[-] Omg red as rose error`
+    | 2016-11-05 21:35:55 :green:`[+] Such success much green wow`
+    | 2016-11-05 21:35:55 :blue:`[?] just a blue info`
+    | 2016-11-05 21:35:55 [ ] some log here
+    | 2016-11-05 21:35:55 :teal:`ROCK!` YOU!
+    | 2016-11-05 21:35:55 :teal:`ROCK!` ALL!
+    | 2016-11-05 21:35:55 :teal:`ROCK!` test@with@at@symbols
+
 
 or make your own log method using a name prefix color level and whether only
 header will be colored or the whole line:
@@ -42,7 +68,7 @@ header will be colored or the whole line:
     logger.custom('my-log', 'ALL!')
 
 Config object
--------------
+#############
 All keys are optional and if not given will be overridden by defaults
 
 .. code-block:: python
@@ -56,6 +82,6 @@ All keys are optional and if not given will be overridden by defaults
     }
 
 COLORS Object
-?????????????
+*************
 Fore colors from clorama library
 
