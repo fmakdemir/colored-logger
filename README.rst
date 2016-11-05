@@ -9,10 +9,6 @@
 
 .. role:: teal
 
-.. raw:: html
-
-    <style> .red {color:red} </style>
-
 ************************
 ColoredLogger for Python
 ************************
