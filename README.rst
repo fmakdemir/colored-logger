@@ -13,7 +13,9 @@
 ColoredLogger for Python
 ************************
 
-Colored Logger for Python that uses clorama for colorful output with timestamp and customizable format
+Colored Logger for Python that uses clorama for colorful output with timestamp
+and customizable format. Colored Logger has timestamp, colored header or full line,
+and custom time format
 
 Setup
 #####
@@ -33,7 +35,7 @@ or get logger with optional config name and config
 .. code-block:: python
 
     import coloredlogger
-    logger = coloredlogger.getLogger(cfg_name=OPTIONAL_CONFIG_NAME, OPTIONAL_CONFIG)
+    logger = coloredlogger.get_logger(cfg_name=OPTIONAL_CONFIG_NAME, OPTIONAL_CONFIG)
 
 log using pre-setup methods:
 
@@ -71,6 +73,15 @@ header will be colored or the whole line:
 And you should see:
 
 .. image:: https://github.com/Fmakdemir/colored-logger/blob/master/assets/coloredlog-2.png?raw=true
+
+You can also overwrite previous configs by:
+
+.. code-block:: python
+
+    logger.add_config('error', {'prefix': 'Custom error with {{TIME}}: ', 'header-only': True})
+
+This will overwrite :code:`error` config's properties with given ones which
+are :code:`prefix` and :code:`header-only`
 
 Config object
 #############
