@@ -19,7 +19,7 @@ setup(
     # Versions should comply with PEP440.  For a discussion on single-sourcing
     # the version across setup.py and the project code, see
     # https://packaging.python.org/en/latest/single_source_version.html
-    version='1.2.6',
+    version='1.2.7',
 
     description='Colored Logger for Python',
     long_description=open("README.rst").read(),
