@@ -68,7 +68,7 @@ class ColoredLogger(object):
 		if 'sep' in kwargs:
 			sep = kwargs['sep']
 		header = ts + cfg['color'] + prefix + header_suffix
-		print(header, *args, **kwargs, Style.RESET_ALL)
+		print(header, *args, Style.RESET_ALL, **kwargs)
 
 	def error(self, *args, **kwargs):
 		self._color_print('error', *args, **kwargs)
