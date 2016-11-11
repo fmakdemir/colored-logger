@@ -9,11 +9,14 @@ def test_preconfigs():
 	logger.success("success")
 	logger.error("error")
 
-def test_custom_cfg_and_cfg_overwrite():
+def test_custom_cfg():
 	print()
 	logger = coloredlogger.get_logger()
-	logger.add_config('test', {'timestamp': '%d_%m_%Y', 'headermonly': True, 'color': coloredlogger.COLORS.MAGENTA, 'prefix': '|Test| Timestamp: {{TIME}}|'})
+	logger.add_config('test', {'timestamp': '%d_%m_%Y', 'header-only': True, 'color': coloredlogger.COLORS.MAGENTA, 'prefix': '|Test| Timestamp: {{TIME}}|'})
 	logger.log('test', 'testing')
-	logger.add_config('test', {'header-only': False})
-	logger.log('test', 'testing 2')
 
+def test_cfg_overwrite():
+	print()
+	logger = coloredlogger.get_logger()
+	logger.add_config('test', {'header-only': True})
+	logger.log('test', 'testing 2')
