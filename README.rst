@@ -54,7 +54,7 @@ log using pre-setup methods:
     logger.error('A red error')
     logger.success('A green success message')
     logger.info('A blue info message')
-    logger.log('Or just some verbose log')
+    logger.verbose('Or just some verbose log')
 
 And you should see:
 
@@ -72,8 +72,8 @@ header will be colored or the whole line:
 .. code-block:: python
 
     logger.add_config('my-log', {'prefix': "ROCK!",'color': ColoredLogger.COLORS.CYAN, 'header-only': True})
-    logger.custom('my-log', 'YOU!')
-    logger.custom('my-log', 'ALL!')
+    logger.log('my-log', 'YOU!')
+    logger.log('my-log', 'ALL!')
 
 ..
     | 2016-11-05 21:35:55 :teal:`ROCK!` YOU!

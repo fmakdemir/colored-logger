@@ -67,8 +67,8 @@ class ColoredLogger(object):
 		sep = ' '
 		if 'sep' in kwargs:
 			sep = kwargs['sep']
-
-		print(ts + cfg['color'] + prefix + header_suffix, sep.join(args), Style.RESET_ALL)
+		header = ts + cfg['color'] + prefix + header_suffix
+		print(header, *args, **kwargs, Style.RESET_ALL)
 
 	def error(self, *args, **kwargs):
 		self._color_print('error', *args, **kwargs)
@@ -79,10 +79,10 @@ class ColoredLogger(object):
 	def info(self, *args, **kwargs):
 		self._color_print('info', *args, **kwargs)
 
-	def log(self, *args, **kwargs):
+	def verbose(self, *args, **kwargs):
 		self._color_print('verbose', *args, **kwargs)
 
-	def custom(self, *args, **kwargs):
+	def log(self, *args, **kwargs):
 		self._color_print(args[0], *args[1:], **kwargs)
 
 if __name__ == '__main__':
@@ -90,12 +90,12 @@ if __name__ == '__main__':
 	logger.error('Omg red as rose error')
 	logger.success('Such success much green wow')
 	logger.info('just a blue info')
-	logger.log('some log here')
+	logger.verbose('some log here')
 	# make your own logger mode
 	logger.add_config('my-log', {'prefix': "ROCK!",'color': COLORS.CYAN, 'header-only': True})
-	logger.custom('my-log', 'YOU!')
-	logger.custom('my-log', 'ALL!')
-	logger.custom('my-log', 'test', 'with', 'at', 'symbols', sep='@')
+	logger.log('my-log', 'YOU!')
+	logger.log('my-log', 'ALL!')
+	logger.log('my-log', 'test', 'with', 'at', 'symbols', sep='@')
 	# AVAILABLE: BLACK, RED, GREEN, YELLOW, BLUE, MAGENTA, CYAN, WHITE, RESET
 	logger.add_config('error', {'prefix': 'Custom error with {{TIME}}: ', 'header-only': True})
 	logger.error('Overwritten error log! Red header with time')
