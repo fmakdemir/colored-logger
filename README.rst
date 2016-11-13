@@ -52,10 +52,10 @@ log using pre-setup methods:
 .. code-block:: python
 
     logger.wtf('WTF??')
-    logger.error('A red error')
-    logger.success('A green success message')
-    logger.info('A blue info message')
-    logger.verbose('Or just some verbose log')
+    logger.error('Omg red as rose error')
+    logger.success('Such success much green wow')
+    logger.info('just a blue info')
+    logger.verbose('some log here')
 
 And you should see:
 
