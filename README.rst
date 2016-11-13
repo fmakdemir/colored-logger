@@ -60,7 +60,6 @@ log using pre-setup methods:
 And you should see:
 
 .. image:: https://github.com/Fmakdemir/colored-logger/blob/master/assets/coloredlog-1.png?raw=true
-.. image:: /assets/coloredlog-1.png
 
 ..
     | 2016-11-05 21:35:55 :red:`[-] Omg red as rose error`
@@ -86,7 +85,6 @@ header will be colored or the whole line:
 And you should see:
 
 .. image:: https://github.com/Fmakdemir/colored-logger/blob/master/assets/coloredlog-2.png?raw=true
-.. image:: /assets/coloredlog-2.png
 
 You can also overwrite previous configs by:
 
@@ -99,7 +97,7 @@ You can also overwrite previous configs by:
 This will overwrite :code:`error` config's properties with given ones which
 are :code:`prefix`, :code:`timestamp` and :code:`header-only`
 
-.. image:: /assets/coloredlog-3.png
+.. image:: https://github.com/Fmakdemir/colored-logger/blob/master/assets/coloredlog-3.png?raw=true
 
 Adding a new config using logger name and init configs is done as in following:
 
@@ -112,7 +110,7 @@ Adding a new config using logger name and init configs is done as in following:
     logger.verbose('Yeey')
     logger.log('custom-log', 'This custom log should have overwritten timestamp')
 
-.. image:: /assets/coloredlog-4.png
+.. image:: https://github.com/Fmakdemir/colored-logger/blob/master/assets/coloredlog-4.png?raw=true
 
 Config object
 #############

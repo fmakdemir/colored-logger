@@ -9,6 +9,7 @@ deploy:
   password:
     secure: DcLqjuIPKJ8hwngnuatU4jXqktIqFUVBc8dQh2jkrimMwKm62H5gpwv2+qnN8avrc3THElflJSm5ezvotUFDkM52QPmdeQWVRG6vQfr6xBk9C9ayS0WTT3D04Hm22jTxzTCgyJCqrUkNyL6PqIkXs/JBMcfMTlKIZaf23L8rbFrHHaPK2jYrVAJ/bMLtVpblGiIDmetEmxglQsNHZGJyOwbCr2D+fHX+o49ZNgfuUNCgEgc3LlE9F6X20LsdJE4dDdTNV/+tapcnSR04tpz/OVTzBaRQzuI7wX29ZpV5L8YELlWLzEeBeqMWf1Nralv7MOy4HGeInCwVlcVGX0cYyeBFQOlzz2KQvxdyZx9g3N+SRzc2YDAlnbq6UtgkXvyWAws8YDjPfRtiG49Rawrl6i0JIUi+F6RuIVQUmdWzz1b7h5C/6y0WYq3seNiT3xpGg1X3f86m4kel7l4G2U0J4eJX1vubfnGkgg8ALJL8vxvLNUiW+chY3LXRs1ckB+A7K2+IlVLaMG85lUpkCi5Hv5hpE4h7ZVFbmILEz3Az/F2zlTiu9xS05nIucfSUTvZHjra9bGRIvmPC3RtZXP/n+Vq8B7UEXQmcnG8jO41BLwlH+ZB4uxQrz7mRUBlpl37cG5qIGGUyrwPXqQV3n+szrTUJgvSeVmhpHiwMGJMmlUE=
   on:
-    distributions: sdist bdist_wheel
+    distributions: "sdist bdist_wheel"
     repo: Fmakdemir/colored-logger
-    branch: master
+    tags: true
+    # branch: master
