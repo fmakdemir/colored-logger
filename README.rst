@@ -38,19 +38,20 @@ get a logger with:
 .. code-block:: python
 
     from coloredlogger import ColoredLogger
-    logger = ColoredLogger()
+    logger = ColoredLogger(name=OPTIONAL_LOGGER_NAME)
 
 or get logger with optional config name and config
 
 .. code-block:: python
 
     import coloredlogger
-    logger = coloredlogger.get_logger(cfg_name=OPTIONAL_CONFIG_NAME, OPTIONAL_CONFIG)
+    logger = coloredlogger.get_logger(name=OPTIONAL_LOGGER_NAME, OPTIONAL_CONFIG_LIST)
 
 log using pre-setup methods:
 
 .. code-block:: python
 
+    logger.wtf('WTF??')
     logger.error('A red error')
     logger.success('A green success message')
     logger.info('A blue info message')
@@ -59,6 +60,7 @@ log using pre-setup methods:
 And you should see:
 
 .. image:: https://github.com/Fmakdemir/colored-logger/blob/master/assets/coloredlog-1.png?raw=true
+.. image:: /assets/coloredlog-1.png
 
 ..
     | 2016-11-05 21:35:55 :red:`[-] Omg red as rose error`
@@ -74,6 +76,7 @@ header will be colored or the whole line:
     logger.add_config('my-log', {'prefix': "ROCK!",'color': ColoredLogger.COLORS.CYAN, 'header-only': True})
     logger.log('my-log', 'YOU!')
     logger.log('my-log', 'ALL!')
+    logger.log('my-log', 'test', 'with', 'at', 'symbols', sep='@')
 
 ..
     | 2016-11-05 21:35:55 :teal:`ROCK!` YOU!
@@ -83,15 +86,33 @@ header will be colored or the whole line:
 And you should see:
 
 .. image:: https://github.com/Fmakdemir/colored-logger/blob/master/assets/coloredlog-2.png?raw=true
+.. image:: /assets/coloredlog-2.png
 
 You can also overwrite previous configs by:
 
+
 .. code-block:: python
 
-    logger.add_config('error', {'prefix': 'Custom error with {{TIME}}: ', 'header-only': True})
+    logger.add_config('error', {'prefix': 'Custom error with {{TIME}}: ', 'timestamp': '[%Hh:%Mm:%Ss]', 'header-only': True})
+
 
 This will overwrite :code:`error` config's properties with given ones which
-are :code:`prefix` and :code:`header-only`
+are :code:`prefix`, :code:`timestamp` and :code:`header-only`
+
+.. image:: /assets/coloredlog-3.png
+
+Adding a new config using logger name and init configs is done as in following:
+
+
+.. code-block:: python
+
+    logger = get_logger('MY LOG', [{'config_name': 'custom-log', 'config': {'timestamp': '%Y/%m/%d %H:%M:%S'}}])
+    logger.info('This should have [MY LOG] [?] as prefix')
+    logger.success('This should have [MY LOG] [+] as prefix')
+    logger.verbose('Yeey')
+    logger.log('custom-log', 'This custom log should have overwritten timestamp')
+
+.. image:: /assets/coloredlog-4.png
 
 Config object
 #############
@@ -109,5 +130,9 @@ All keys are optional and if not given will be overridden by defaults
 
 COLORS Object
 *************
-Fore colors from clorama library
 
+Following colors are supported:
+
+**Normal:** :code:`BLACK, BLUE, CYAN, GREEN, MAGENTA, RED, WHITE, YELLOW`
+
+**Light:** :code:`LIGHTBLACK_EX, LIGHTBLUE_EX, LIGHTCYAN_EX, LIGHTGREEN_EX, LIGHTMAGENTA_EX, LIGHTRED_EX, LIGHTWHITE_EX, LIGHTYELLOW_EX`

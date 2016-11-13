@@ -6,24 +6,30 @@ import copy
 
 COLORS = Fore
 
-def get_logger(cfg_name=None, config=None):
-	logger = ColoredLogger()
-	if cfg_name != None and config != None:
-		logger.add_config(cfg_name, config)
+def get_logger(name=None, configs=None):
+	logger = ColoredLogger(name=name)
+	logger.add_configs(configs)
 	return logger
 
+_DEFAULT_CFG = {'level': 10, 'timestamp': '%Y-%m-%d %H:%M:%S', 'prefix': '[ ]', 'color': COLORS.WHITE, 'header-only': False}
 
 class ColoredLogger(object):
-	_DEFAULT_CFG = {'level': 10, 'timestamp': '%Y-%m-%d %H:%M:%S', 'prefix': '[ ]', 'color': COLORS.WHITE, 'header-only': False}
-	def __init__(self):
+	def __init__(self, name=None):
+		self._DEFAULT_CFG = copy.deepcopy(_DEFAULT_CFG)
 		self.configs = {
+			'wtf':{'level': 0, 'prefix': '[X]', 'color': COLORS.MAGENTA},
 			'error':{'level': 1, 'prefix': '[-]', 'color': COLORS.RED},
 			'info':{'level': 2, 'prefix': '[?]', 'color': COLORS.BLUE},
 			'success':{'level': 3, 'prefix': '[+]', 'color': COLORS.GREEN},
 			'verbose':{'level': 4, 'prefix': '[ ]', 'color': COLORS.WHITE},
 		}
+		if name:
+			prefix = self._DEFAULT_CFG['prefix']
+			self._DEFAULT_CFG['prefix'] = '[%s] %s' % (name, prefix)
 		for ck in self.configs:
 			cfg = self.configs[ck]
+			if name:
+				cfg['prefix'] = '[%s] %s' % (name, cfg['prefix'])
 			for k in self._DEFAULT_CFG:
 				if k not in cfg:
 					cfg[k] = self._DEFAULT_CFG[k]
@@ -45,6 +51,17 @@ class ColoredLogger(object):
 				cfg[k] = config[k]
 
 		self.configs[config_name] = cfg
+
+	def add_configs(self, configs=None):
+		if not configs:
+			return
+		if type(configs) != list:
+			raise TypeError('Invalid config list received: %s' % repr(configs))
+		for cfg in configs:
+			if type(cfg) == dict and 'config_name' in cfg and 'config' in cfg:
+				self.add_config(**cfg)
+			else:
+				raise TypeError('Invalid config received: %s' % repr(cfg))
 
 	def _color_print(self, cfg_name, *args, **kwargs):
 		try:
@@ -68,7 +85,8 @@ class ColoredLogger(object):
 		if 'sep' in kwargs:
 			sep = kwargs['sep']
 		header = ts + cfg['color'] + prefix + header_suffix
-		print(header, *args, Style.RESET_ALL, **kwargs)
+		args = [*args, Style.RESET_ALL]
+		print(header, *args, **kwargs)
 
 	def error(self, *args, **kwargs):
 		self._color_print('error', *args, **kwargs)
@@ -82,11 +100,15 @@ class ColoredLogger(object):
 	def verbose(self, *args, **kwargs):
 		self._color_print('verbose', *args, **kwargs)
 
+	def wtf(self, *args, **kwargs):
+		self._color_print('wtf', *args, **kwargs)
+
 	def log(self, *args, **kwargs):
 		self._color_print(args[0], *args[1:], **kwargs)
 
 if __name__ == '__main__':
 	logger = ColoredLogger()
+	logger.wtf('WTF??')
 	logger.error('Omg red as rose error')
 	logger.success('Such success much green wow')
 	logger.info('just a blue info')
@@ -97,8 +119,14 @@ if __name__ == '__main__':
 	logger.log('my-log', 'ALL!')
 	logger.log('my-log', 'test', 'with', 'at', 'symbols', sep='@')
 	# AVAILABLE: BLACK, RED, GREEN, YELLOW, BLUE, MAGENTA, CYAN, WHITE, RESET
-	logger.add_config('error', {'prefix': 'Custom error with {{TIME}}: ', 'header-only': True})
+	logger.add_config('error', {'prefix': 'Custom error with {{TIME}}: ', 'timestamp': '[%Hh:%Mm:%Ss]', 'header-only': True})
 	logger.error('Overwritten error log! Red header with time')
 	for i in range(100000000):
 		pass
 	logger.error('test showing time is working')
+	# named logger with custom log
+	logger = get_logger('MY LOG', [{'config_name': 'custom-log', 'config': {'timestamp': '%Y/%m/%d %H:%M:%S'}}])
+	logger.info('This should have MY LOG [?] as prefix')
+	logger.success('This should have MY LOG [+] as prefix')
+	logger.verbose('Yeey')
+	logger.log('custom-log', 'This custom log should have overwritten timestamp')
