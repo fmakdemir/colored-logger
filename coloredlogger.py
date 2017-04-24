@@ -3,6 +3,7 @@ from __future__ import print_function
 from colorama import Fore, Back, Style
 from time import strftime
 import copy
+import sys
 
 COLORS = Fore
 
@@ -86,7 +87,10 @@ class ColoredLogger(object):
 			sep = kwargs['sep']
 		header = ts + cfg['color'] + prefix + header_suffix
 		args = [*args, Style.RESET_ALL]
+		# TODO: change to python logger
 		print(header, *args, **kwargs)
+		# flush to show changes
+		sys.stdout.flush()
 
 	def error(self, *args, **kwargs):
 		self._color_print('error', *args, **kwargs)
