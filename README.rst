@@ -17,8 +17,8 @@ ColoredLogger for Python
     :target: https://pypi.python.org/pypi/coloredlogger/
 .. image:: https://img.shields.io/badge/wheel-yes-brightgreen.svg
     :target: https://pypi.python.org/pypi/coloredlogger/
-.. image:: https://travis-ci.org/Fmakdemir/colored-logger.svg?branch=master
-    :target: https://travis-ci.org/Fmakdemir/colored-logger
+.. image:: https://travis-ci.org/fmakdemir/colored-logger.svg?branch=master
+    :target: https://travis-ci.org/fmakdemir/colored-logger
 
 
 Colored Logger for Python that uses clorama for colorful output with timestamp
