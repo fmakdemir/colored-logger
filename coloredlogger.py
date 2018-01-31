@@ -89,7 +89,6 @@ class ColoredLogger(object):
 		args = list(*args)
 		args.append(Style.RESET_ALL)
 		# TODO: change to python logger
-		print(header, args, kwargs)
 		print(header, *args, **kwargs)
 		# flush to show changes
 		sys.stdout.flush()
