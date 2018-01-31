@@ -17,7 +17,7 @@ setup(
     # https://packaging.python.org/en/latest/single_source_version.html
     version='1.3.8',
     description='Colored Logger for Python',
-    long_description=open(path.join(here, "README.rst")).read(),
+    long_description=str(open(path.join(here, "README.rst")).read()),
     # The project's main homepage.
     url='https://github.com/fmakdemir/colored-logger',
     # Author details
