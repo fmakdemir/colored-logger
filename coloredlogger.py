@@ -86,8 +86,10 @@ class ColoredLogger(object):
 		if 'sep' in kwargs:
 			sep = kwargs['sep']
 		header = ts + cfg['color'] + prefix + header_suffix
-		args = [*args, Style.RESET_ALL]
+		args = list(*args)
+		args.append(Style.RESET_ALL)
 		# TODO: change to python logger
+		print(header, args, kwargs)
 		print(header, *args, **kwargs)
 		# flush to show changes
 		sys.stdout.flush()
